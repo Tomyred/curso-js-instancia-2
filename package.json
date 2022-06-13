@@ -1,0 +1,11 @@
+{
+  "name": "my-first-web-app",
+  "version": "1.0.0",
+  "description": "curso js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Tomás Rojo",
+  "license": "ISC"
+}
