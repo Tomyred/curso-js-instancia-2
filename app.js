@@ -1,21 +1,49 @@
-class Persona {
-    constructor(nombre, peso, apellido, edad, vivo) {
-        this.nombre = nombre;
-        this.peso = peso;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.vivo = vivo;
-    }
-    saludar(nombre) {
-        if (this.vivo) {
-            console.log("Hola " + nombre + " soy " + this.nombre);
+const user = document.querySelector("#user");
+const pass = document.querySelector("#pass");
+const submitBtn = document.querySelector(".submitBtn");
+const userList = document.querySelector("#userList");
+const title = document.querySelector("#title");
+
+const usersDB = [
+    {
+        userName: "TomRoj",
+        email: "email1@mail.com",
+        password: "123456",
+    },
+    {
+        userName: "Mati",
+        email: "email2@mail.com",
+        password: "mati123",
+    },
+    {
+        userName: "Juancito",
+        email: "email3@mail.com",
+        password: "john123",
+    },
+];
+
+submitBtn.addEventListener("click", function () {
+    const newUser = {
+        userName: user.value,
+        password: pass.value,
+    };
+
+    const findedUser = usersDB.find(function (user) {
+        return user.userName == newUser.value;
+    });
+
+    if (findedUser) {
+        alert("El usuario ya existe");
+    } else {
+        if (newUser.password.length < 4) {
+            title.innerHTML = "Contraseña insegura";
         } else {
-            console.log("CORRE!!!");
+            usersDB.push(newUser);
+            userList.innerHTML += `<li> ${newUser.userName} </li>`;
         }
     }
-}
+});
 
-let persona1 = new Persona("Tomi", 70, "Rojo", 25, false);
-let persona2 = new Persona("Mica", 45, "dasdsa", 22, true);
-
-console.log(true);
+usersDB.forEach(function (user) {
+    userList.innerHTML += `<li> ${user.userName} </li>`;
+});
